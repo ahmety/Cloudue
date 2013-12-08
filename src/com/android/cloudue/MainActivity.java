@@ -1,10 +1,12 @@
 package com.android.cloudue;
 
-import android.os.Bundle;
 import android.app.ActionBar;
+import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
+
+import com.parse.Parse;
 
 public class MainActivity extends FragmentActivity {
 	
@@ -21,6 +23,8 @@ public class MainActivity extends FragmentActivity {
 		
 		final ActionBar bar = getActionBar();
 		bar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+		
+		Parse.initialize(this, "StrOqB8qnqpisT8hL6gn3ru4R30Iz4odmzQasElG", "5VdNwSQNvvzNex7dvq4R0RexZD3J5r3HaqpvHOGi");
 		
 		mTabAdapter = new TabAdapter(this, pager);
 		mTabAdapter.addTab(bar.newTab().setText("Today"), ListEventToday.class, null);

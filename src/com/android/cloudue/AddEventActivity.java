@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 
+import com.parse.ParseObject;
+
 public class AddEventActivity extends Activity {
 
 	@Override
@@ -36,6 +38,8 @@ public class AddEventActivity extends Activity {
 		return true;
 	}
 	public void addCalendarEvent(View view){
-		
+		ParseObject kimiObject = new ParseObject("KimiObject");
+		kimiObject.put("foo", "bar");
+		kimiObject.saveInBackground();
 	}
 }
