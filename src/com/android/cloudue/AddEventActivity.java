@@ -38,8 +38,8 @@ public class AddEventActivity extends Activity {
 		return true;
 	}
 	public void addCalendarEvent(View view){
-		ParseObject kimiObject = new ParseObject("KimiObject");
-		kimiObject.put("foo", "bar");
-		kimiObject.saveInBackground();
+//		ParseObject kimiObject = new ParseObject("KimiObject");
+//		kimiObject.put("foo", "bar");
+//		kimiObject.saveInBackground();
 	}
 }

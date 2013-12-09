@@ -34,6 +34,8 @@
         <item>Eat</item>
         <item>Work</item>
     </string-array>
+    <string name="signup_button">Sign up</string>
+    <string name="signup_text">Do not have an account yet?</string>
 
 
 </resources>

@@ -4,7 +4,21 @@
     android:layout_height="fill_parent"
     android:orientation="vertical">
 
+    <RelativeLayout 
+        android:layout_weight="2"
+        android:layout_height="0dp"
+        android:layout_width="fill_parent">
 
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/text_logo" />
+        
+    </RelativeLayout>
+    
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="0dp"
@@ -13,7 +27,7 @@
 	    <EditText
             android:id="@+id/username"
             android:hint="@string/username_hint"
-            android:layout_width="fill_parent"
+            android:layout_width="250dp"
             android:layout_height="40dp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true" >
@@ -22,7 +36,7 @@
 	    
 	    <EditText
             android:id="@+id/password"
-            android:layout_width="fill_parent"
+            android:layout_width="250dp"
             android:layout_height="40dp"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
@@ -31,19 +45,40 @@
         </EditText>
 	    
         <Button
-            android:layout_width="fill_parent"
+            android:layout_width="250dp"
             android:layout_height="40dp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:text="@string/login_button"
-            android:onClick="login"/>
+            android:onClick="login"
+/>
 
     </RelativeLayout>
         
     <RelativeLayout 
-        android:layout_weight="5 "
+        android:layout_weight="4 "
         android:layout_height="0dp"
         android:layout_width="fill_parent">
+
+        <TextView
+            android:id="@+id/signup_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/signup_button"
+            android:layout_centerHorizontal="true"
+            android:text="@string/signup_text" />
+
+        <Button
+            android:id="@+id/signup_button"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="@string/signup_button" 
+            android:background="#4aae39"
+            android:textColor="#ffffff"
+            android:onClick="login"/>
+
     </RelativeLayout>
 
 
