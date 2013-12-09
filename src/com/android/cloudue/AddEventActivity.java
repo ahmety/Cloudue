@@ -38,6 +38,12 @@ public class AddEventActivity extends Activity {
 		return true;
 	}
 	public void addCalendarEvent(View view){
+		//if event came from today list layout
+		
+		//else if event came from tomorrow list layout
+		//else (came from someday list layout)
+		
+		
 //		ParseObject kimiObject = new ParseObject("KimiObject");
 //		kimiObject.put("foo", "bar");
 //		kimiObject.saveInBackground();
