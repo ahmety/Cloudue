@@ -1,16 +1,14 @@
 package com.android.cloudue;
 
 import android.app.ActionBar;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 
 import com.parse.Parse;
 
-public class MainActivity extends FragmentActivity implements ActivityCommunicator{
+public class MainActivity extends FragmentActivity {
 	
 	public FragmentCommunicator fragmentCommunicator;
 	private ViewPager pager;
@@ -39,14 +37,5 @@ public class MainActivity extends FragmentActivity implements ActivityCommunicat
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
-
-	@Override
-	public void sendDataToActivity(String value) {
-		
-	}
-
-
-	
-    
 }
 
