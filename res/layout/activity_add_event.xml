@@ -3,21 +3,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
+	<RelativeLayout 
+        android:layout_weight="1"
+        android:layout_height="0dp"
+        android:layout_width="fill_parent">
+    </RelativeLayout>
+    <RelativeLayout 
+        android:layout_weight="4"
+        android:layout_height="0dp"
+        android:layout_width="fill_parent">
 
-    <EditText
-        android:id="@+id/event_name"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" 
-        android:hint="@string/edit_hint" >
-    <requestFocus/>
-    </EditText>
-
-    <Button
-        android:id="@+id/add_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/add_button"
-        android:onClick="addCalendarEvent"/>
-
+	    <EditText
+	        android:id="@+id/event_name"
+	        android:layout_width="250dp"
+	        android:layout_height="wrap_content"
+	        android:ems="10"
+	        android:layout_centerHorizontal="true"
+	        android:hint="@string/edit_hint"/>
+	
+	    <Button
+	        android:id="@+id/add_button"
+	        android:layout_width="250dp"
+	        android:layout_height="40dp"
+	        android:layout_centerHorizontal="true"
+	        android:layout_below="@+id/event_name"
+	        android:onClick="addCalendarEvent"
+	        android:text="@string/add_button" />
+	</RelativeLayout>
+	<RelativeLayout 
+        android:layout_weight="4"
+        android:layout_height="0dp"
+        android:layout_width="fill_parent">
+    </RelativeLayout>
+    
 </LinearLayout>

@@ -8,7 +8,7 @@ import android.view.Menu;
 
 import com.parse.Parse;
 
-public class MainActivity extends FragmentActivity {
+public class MainActivity extends FragmentActivity{
 	
 	private ViewPager pager;
 	private TabAdapter mTabAdapter;
