@@ -50,7 +50,6 @@ public class ListEventSomeday extends ListFragment implements FragmentCommunicat
 	@Override
 	public void sendDataToFragment(String value) {
 		// TODO Auto-generated method stub
-		
 	}
 
 }
