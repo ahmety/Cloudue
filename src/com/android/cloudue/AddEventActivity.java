@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.View;
+import android.view.ViewDebug.FlagToString;
 import android.widget.EditText;
 
 public class AddEventActivity extends Activity {
@@ -57,7 +58,8 @@ public class AddEventActivity extends Activity {
 		dueEvent.saveInBackground();
 		
 		Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-		startActivityForResult(intent, 1);
+		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+		startActivity(intent);
 		
 //		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 //		SharedPreferences.Editor editor = prefs.edit();
