@@ -1,5 +1,7 @@
 package com.android.cloudue;
 
+import java.util.ArrayList;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
@@ -10,11 +12,15 @@ import android.widget.ArrayAdapter;
 
 public class ListEventTomorrow extends ListFragment{
 	public final static String EXTRA_MESSAGE = "com.android.cloudue.MESSAGE";	
-	String[] list_items;
+	ArrayList <String> list_items;
 	
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 		View rootView = inflater.inflate(R.layout.list_tomorrow, container, false);
-		list_items = getResources().getStringArray(R.array.tomorrow_list);
+		list_items = new ArrayList<String>();
+		list_items.add("Update LinkedIn profile");
+		list_items.add("EEE 391 Assignment 3");
+		list_items.add("IE 400 Quiz 4");
+		list_items.add("CS 476 Homework 3");
 		setListAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, list_items));
 		
         rootView.findViewById(R.id.tomorrow_button)
