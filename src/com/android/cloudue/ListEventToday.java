@@ -4,17 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
-import android.text.method.MovementMethod;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
@@ -22,7 +19,7 @@ import com.parse.FindCallback;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
-public class ListEventToday extends ListFragment{
+public class ListEventToday extends ListFragment {
 	public final static String EXTRA_MESSAGE = "com.android.cloudue.MESSAGE";	
 	public Context context;
 	ArrayList<String> list_items;
@@ -56,6 +53,7 @@ public class ListEventToday extends ListFragment{
 		System.out.println("on create view cagirildi");
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, list_items);
 		setListAdapter(adapter);
+		
 		rootView.findViewById(R.id.today_button)
         		.setOnClickListener(new View.OnClickListener() {
 		            @Override
@@ -66,6 +64,7 @@ public class ListEventToday extends ListFragment{
 		                startActivity(intent);
 		            }
 		        });
+		
 		return rootView;
 	}
 
