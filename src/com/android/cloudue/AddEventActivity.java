@@ -1,16 +1,13 @@
 package com.android.cloudue;
 
-import com.parse.ParseObject;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.View;
-import android.view.ViewDebug.FlagToString;
 import android.widget.EditText;
+
+import com.parse.ParseObject;
 
 public class AddEventActivity extends Activity {
 	public final static String EXTRA_MESSAGE = "com.android.cloudue.MESSAGE";

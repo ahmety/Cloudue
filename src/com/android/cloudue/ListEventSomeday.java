@@ -21,6 +21,7 @@ public class ListEventSomeday extends ListFragment {
 	public final static String EXTRA_MESSAGE = "com.android.cloudue.MESSAGE";	
 	public Context context;
 	ArrayList<String> list_items;
+	ArrayAdapter<String> adapter;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,8 @@ public class ListEventSomeday extends ListFragment {
 						list_items.add(object.getString("detail"));
 					}
 				}
+				adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, list_items);
+				setListAdapter(adapter);
 			}
 		});
 		
@@ -49,8 +52,6 @@ public class ListEventSomeday extends ListFragment {
 		View rootView = inflater.inflate(R.layout.list_someday, container, false);
 		
 		System.out.println("on create view cagirildi");
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, list_items);
-		setListAdapter(adapter);
 		rootView.findViewById(R.id.someday_button)
         		.setOnClickListener(new View.OnClickListener() {
 		            @Override

@@ -7,10 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
-import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -41,6 +38,8 @@ public class ListEventToday extends ListFragment {
 						list_items.add(object.getString("detail"));
 					}
 				}
+				ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, list_items);
+				setListAdapter(adapter);
 			}
 		});
 		
@@ -52,8 +51,6 @@ public class ListEventToday extends ListFragment {
 		View rootView = inflater.inflate(R.layout.list_today, container, false);
 		
 		System.out.println("on create view cagirildi");
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, list_items);
-		setListAdapter(adapter);
 		
 		rootView.findViewById(R.id.today_button)
         		.setOnClickListener(new View.OnClickListener() {
@@ -71,8 +68,11 @@ public class ListEventToday extends ListFragment {
 
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
+		String eventName = list_items.get(position);
 		Intent intent = new Intent(getActivity(), EventDetailsActivity.class);
+		intent.putExtra(EXTRA_MESSAGE, eventName);
 		startActivity(intent);
 	}
 
+	
 }
