@@ -46,7 +46,6 @@ public class ListEventSomeday extends ListFragment implements FragmentCommunicat
 		                intent.putExtra(EXTRA_MESSAGE, cameFrom);
 		                startActivity(intent);
 		            }
-		        });	
 		return rootView;
 	}
 
