@@ -22,7 +22,7 @@ public class ListEventTomorrow extends ListFragment{
 		list_items.add("IE 400 Quiz 4");
 		list_items.add("CS 476 Homework 3");
 		setListAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, list_items));
-		
+		System.out.println("onCreateView called in tomorrow list");
         rootView.findViewById(R.id.tomorrow_button)
 		        .setOnClickListener(new View.OnClickListener() {
 		            @Override

@@ -42,14 +42,22 @@ public class AddEventActivity extends Activity {
 		return true;
 	}
 	public void addCalendarEvent(View view){
+		
 		EditText editText = (EditText) findViewById(R.id.event_name);
 		String eventName = editText.getText().toString();
+		if(eventName.equals("")){
+			return;
+		}
+		
 		int listIndex = Integer.parseInt(message);
 		
 		ParseObject dueEvent = new ParseObject("DueEvent");
 		dueEvent.put("detail", eventName);
 		dueEvent.put("listIndex", listIndex);
 		dueEvent.saveInBackground();
+		
+		Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+		startActivityForResult(intent, 1);
 		
 //		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 //		SharedPreferences.Editor editor = prefs.edit();
