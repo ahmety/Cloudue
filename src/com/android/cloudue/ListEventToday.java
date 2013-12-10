@@ -14,6 +14,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.parse.FindCallback;
 import com.parse.ParseObject;
@@ -68,5 +69,10 @@ public class ListEventToday extends ListFragment {
 		return rootView;
 	}
 
+	@Override
+	public void onListItemClick(ListView l, View v, int position, long id) {
+		Intent intent = new Intent(getActivity(), EventDetailsActivity.class);
+		startActivity(intent);
+	}
 
 }
