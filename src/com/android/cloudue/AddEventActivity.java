@@ -1,15 +1,21 @@
 package com.android.cloudue;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.View;
-
 import com.parse.ParseObject;
 
-public class AddEventActivity extends Activity {
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.view.Menu;
+import android.view.View;
+import android.widget.EditText;
 
+public class AddEventActivity extends Activity {
+	public final static String EXTRA_MESSAGE = "com.android.cloudue.MESSAGE";
+	String message;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -17,7 +23,6 @@ public class AddEventActivity extends Activity {
 		
 	    // Get the message from the intent
 	    Intent intent = getIntent();
-	    String message;
 	    String temp;
 
 	    if ((temp = intent.getStringExtra(ListEventToday.EXTRA_MESSAGE)) != null) {
@@ -29,7 +34,7 @@ public class AddEventActivity extends Activity {
 	    else {
 	    	message = intent.getStringExtra(ListEventSomeday.EXTRA_MESSAGE);
 	    }
-
+	    
 	}
 
 	@Override
@@ -38,6 +43,22 @@ public class AddEventActivity extends Activity {
 		return true;
 	}
 	public void addCalendarEvent(View view){
+		EditText editText = (EditText) findViewById(R.id.event_name);
+		String eventName = editText.getText().toString();
+		int listIndex = Integer.parseInt(message);
+		
+		ParseObject dueEvent = new ParseObject("DueEvent");
+		dueEvent.put("detail", eventName);
+		dueEvent.put("listIndex", listIndex);
+		dueEvent.saveInBackground();
+		
+//		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+//		SharedPreferences.Editor editor = prefs.edit();
+//		editor.putString("string_id", message); //InputString: from the EditText
+//		editor.commit();
+		
+		
+		
 		//if event came from today list layout
 		
 		//else if event came from tomorrow list layout

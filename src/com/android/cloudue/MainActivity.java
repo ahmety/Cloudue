@@ -1,18 +1,20 @@
 package com.android.cloudue;
 
 import android.app.ActionBar;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 
 import com.parse.Parse;
 
-public class MainActivity extends FragmentActivity {
+public class MainActivity extends FragmentActivity implements ActivityCommunicator{
 	
+	public FragmentCommunicator fragmentCommunicator;
 	private ViewPager pager;
 	private TabAdapter mTabAdapter;
-	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +39,14 @@ public class MainActivity extends FragmentActivity {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
+
+	@Override
+	public void sendDataToActivity(String value) {
+		
+	}
+
+
+	
     
 }
 
