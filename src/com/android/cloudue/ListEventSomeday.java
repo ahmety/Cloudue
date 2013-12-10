@@ -18,7 +18,6 @@ public class ListEventSomeday extends ListFragment implements FragmentCommunicat
 	private ActivityCommunicator activityCommunicator;
 	ArrayList<String> list_items;
 	
-	
 	@Override
 	public void onAttach(Activity activity){
 		super.onAttach(activity);
@@ -30,12 +29,15 @@ public class ListEventSomeday extends ListFragment implements FragmentCommunicat
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 		View rootView = inflater.inflate(R.layout.list_someday, container, false);
-		list_items = new ArrayList<String>();
+		list_items = new ArrayList<String>();		
+		list_items.add("Sleep");
+		list_items.add("Eat");
+		list_items.add("Work");
+		
 		System.out.println("on create cagirildi");
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, list_items);
 		setListAdapter(adapter);
-		
-        rootView.findViewById(R.id.someday_button)
+		rootView.findViewById(R.id.someday_button)
         		.setOnClickListener(new View.OnClickListener() {
 		            @Override
 		            public void onClick(View view) {

@@ -1,7 +1,6 @@
 package com.android.cloudue;
 
 import com.parse.ParseObject;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -63,7 +62,6 @@ public class AddEventActivity extends Activity {
 		
 		//else if event came from tomorrow list layout
 		//else (came from someday list layout)
-		
 		
 //		ParseObject kimiObject = new ParseObject("KimiObject");
 //		kimiObject.put("foo", "bar");
