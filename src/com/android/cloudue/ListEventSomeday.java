@@ -30,9 +30,6 @@ public class ListEventSomeday extends ListFragment implements FragmentCommunicat
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 		View rootView = inflater.inflate(R.layout.list_someday, container, false);
 		list_items = new ArrayList<String>();		
-		list_items.add("Sleep");
-		list_items.add("Eat");
-		list_items.add("Work");
 		
 		System.out.println("on create cagirildi");
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, list_items);
@@ -46,6 +43,7 @@ public class ListEventSomeday extends ListFragment implements FragmentCommunicat
 		                intent.putExtra(EXTRA_MESSAGE, cameFrom);
 		                startActivity(intent);
 		            }
+		        });
 		return rootView;
 	}
 
