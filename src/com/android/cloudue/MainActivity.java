@@ -15,7 +15,6 @@ import com.parse.Parse;
 
 public class MainActivity extends FragmentActivity {
 	
-	public FragmentCommunicator fragmentCommunicator;
 	private ViewPager pager;
 	private TabAdapter mTabAdapter;
     @Override
