@@ -26,5 +26,8 @@ public class LoginActivity extends Activity {
 		startActivity(intent);
 		finish();
 	}
-	
+	public void showSignupActivity(View view){
+		Intent intent = new Intent(this, SignupActivity.class);
+		startActivity(intent);
+	}
 }

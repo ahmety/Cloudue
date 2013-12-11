@@ -79,7 +79,7 @@
             android:text="@string/signup_button" 
             android:background="#4aae39"
             android:textColor="#ffffff"
-            android:onClick="login"/>
+            android:onClick="showSignupActivity"/>
 
     </RelativeLayout>
 

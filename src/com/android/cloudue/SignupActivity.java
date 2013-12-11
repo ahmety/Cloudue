@@ -1,8 +1,9 @@
 package com.android.cloudue;
 
-import android.os.Bundle;
 import android.app.Activity;
+import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
 
 public class SignupActivity extends Activity {
 
@@ -19,4 +20,8 @@ public class SignupActivity extends Activity {
 		return true;
 	}
 
+	public void signup(View view){
+		//TODO method stub
+	}
+	
 }
