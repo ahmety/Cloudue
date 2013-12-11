@@ -17,6 +17,8 @@ public class MainActivity extends FragmentActivity {
 	
 	private ViewPager pager;
 	private TabAdapter mTabAdapter;
+	private String userName;
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +43,11 @@ public class MainActivity extends FragmentActivity {
 			if(currentTab != null)
 				mTabAdapter.onPageSelected(Integer.parseInt(currentTab));
 		}
+		
+		if(intent != null) {
+			userName = intent.getStringExtra("userName");
+		}
+		
 	}
     
     @Override
