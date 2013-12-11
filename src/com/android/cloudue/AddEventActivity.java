@@ -2,7 +2,9 @@ package com.android.cloudue;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
@@ -12,11 +14,18 @@ import com.parse.ParseObject;
 public class AddEventActivity extends Activity {
 	public final static String EXTRA_MESSAGE = "com.android.cloudue.MESSAGE";
 	String cameFrom;
+	String userNameDueList;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_event);
+		
+		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+		userNameDueList = preferences.getString("userName", "");
+		if(!userNameDueList.equalsIgnoreCase("")) {
+			userNameDueList += "DueList";
+		}
 		
 	    // Get the message from the intent
 	    Intent intent = getIntent();
@@ -39,6 +48,7 @@ public class AddEventActivity extends Activity {
 		getMenuInflater().inflate(R.menu.add_event, menu);
 		return true;
 	}
+	
 	public void addCalendarEvent(View view){
 		
 		EditText editText = (EditText) findViewById(R.id.event_name);
@@ -49,7 +59,7 @@ public class AddEventActivity extends Activity {
 		
 		int listIndex = Integer.parseInt(cameFrom);
 		
-		ParseObject dueEvent = new ParseObject("DueEvent");
+		ParseObject dueEvent = new ParseObject(userNameDueList);
 		dueEvent.put("detail", eventName);
 		dueEvent.put("listIndex", listIndex);
 		dueEvent.saveInBackground();

@@ -5,7 +5,9 @@ import java.util.List;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.ListFragment;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -23,12 +25,20 @@ public class ListEventSomeday extends ListFragment {
 	public Context context;
 	ArrayList<String> list_items;
 	ArrayAdapter<String> adapter;
+	String userNameDueList;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		list_items = new ArrayList<String>();
-		ParseQuery<ParseObject> query = ParseQuery.getQuery("DueEvent");
+		
+		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+		userNameDueList = preferences.getString("userName", "");
+		if(!userNameDueList.equalsIgnoreCase("")) {
+			userNameDueList += "DueList";
+		}
+		
+		ParseQuery<ParseObject> query = ParseQuery.getQuery(userNameDueList);
 		query.whereEqualTo("listIndex", 2);
 		query.findInBackground(new FindCallback<ParseObject>() {
 

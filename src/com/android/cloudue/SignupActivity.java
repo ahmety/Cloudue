@@ -10,7 +10,9 @@ import com.parse.ParseQuery;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
@@ -65,6 +67,11 @@ public class SignupActivity extends Activity {
 					System.out.println("Username is alrady in use!");
 					return;
 				}
+				SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+				SharedPreferences.Editor editor = preferences.edit();
+				editor.clear();
+				editor.putString("userName", userName);
+				editor.commit();
 				Intent intent = new Intent (getApplicationContext(), MainActivity.class);
 				intent.putExtra("userName", userName);
 				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
