@@ -1,13 +1,5 @@
 package com.android.cloudue;
 
-import java.util.List;
-
-import com.parse.FindCallback;
-import com.parse.GetCallback;
-import com.parse.ParseException;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,6 +8,12 @@ import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.parse.GetCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 
 public class SignupActivity extends Activity {
 	String userName;
@@ -46,6 +44,8 @@ public class SignupActivity extends Activity {
 		//TODO whitespace checking
 		if(userName.equals("User")){
 			//TODO dialog
+			Toast toast = Toast.makeText(getApplicationContext(), "Username is not available!", Toast.LENGTH_SHORT);
+			toast.show();
 			System.out.println("Username is not available!");
 			return;
 		}
@@ -64,7 +64,10 @@ public class SignupActivity extends Activity {
 				}
 				else{
 					//TODO dialog
-					System.out.println("Username is alrady in use!");
+					Toast toast = Toast.makeText(getApplicationContext(), "Username is already in use!", Toast.LENGTH_SHORT);
+					toast.show();
+
+					System.out.println("Username is already in use!");
 					return;
 				}
 				SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
