@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,16 +43,11 @@ public class ListEventToday extends ListFragment {
 				setListAdapter(adapter);
 			}
 		});
-		
-		System.out.println("data is fetched");
 	}
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 		View rootView = inflater.inflate(R.layout.list_today, container, false);
-		
-		System.out.println("on create view cagirildi");
-		
 		rootView.findViewById(R.id.today_button)
         		.setOnClickListener(new View.OnClickListener() {
 		            @Override
@@ -71,7 +67,7 @@ public class ListEventToday extends ListFragment {
 		String eventName = list_items.get(position);
 		String[] itemInfo = {"0",eventName};
 		Intent intent = new Intent(getActivity(), EventDetailsActivity.class);
-		intent.putExtra(EXTRA_MESSAGE, itemInfo);
+		intent.putExtra("itemInfo", itemInfo);
 		startActivity(intent);
 	}
 

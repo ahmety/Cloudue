@@ -11,7 +11,7 @@ import com.parse.ParseObject;
 
 public class AddEventActivity extends Activity {
 	public final static String EXTRA_MESSAGE = "com.android.cloudue.MESSAGE";
-	String message;
+	String cameFrom;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -23,13 +23,13 @@ public class AddEventActivity extends Activity {
 	    String temp;
 
 	    if ((temp = intent.getStringExtra(ListEventToday.EXTRA_MESSAGE)) != null) {
-	    	message = temp;
+	    	cameFrom = temp;
 	    }
 	    else if ((temp = intent.getStringExtra(ListEventTomorrow.EXTRA_MESSAGE)) != null) {
-	    	message = temp;
+	    	cameFrom = temp;
 	    }
 	    else {
-	    	message = intent.getStringExtra(ListEventSomeday.EXTRA_MESSAGE);
+	    	cameFrom = intent.getStringExtra(ListEventSomeday.EXTRA_MESSAGE);
 	    }
 	    
 	}
@@ -47,7 +47,7 @@ public class AddEventActivity extends Activity {
 			return;
 		}
 		
-		int listIndex = Integer.parseInt(message);
+		int listIndex = Integer.parseInt(cameFrom);
 		
 		ParseObject dueEvent = new ParseObject("DueEvent");
 		dueEvent.put("detail", eventName);
@@ -55,6 +55,7 @@ public class AddEventActivity extends Activity {
 		dueEvent.saveInBackground();
 		
 		Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+		intent.putExtra("currentTab", cameFrom);
 		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 		startActivity(intent);
 		

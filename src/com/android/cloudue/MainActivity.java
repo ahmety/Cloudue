@@ -1,6 +1,7 @@
 package com.android.cloudue;
 
 import android.app.ActionBar;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.MotionEventCompat;
@@ -35,6 +36,12 @@ public class MainActivity extends FragmentActivity {
 		mTabAdapter.addTab(bar.newTab().setText("Tomorrow"), ListEventTomorrow.class, null);
 		mTabAdapter.addTab(bar.newTab().setText("Someday"), ListEventSomeday.class, null);
 		
+		Intent intent = getIntent();
+		if(intent != null){
+			String currentTab = intent.getStringExtra("currentTab");
+			if(currentTab != null)
+				mTabAdapter.onPageSelected(Integer.parseInt(currentTab));
+		}
 	}
     
     @Override
