@@ -25,7 +25,7 @@
         android:layout_weight="2" >
 
 	    <EditText
-            android:id="@+id/username_login"
+            android:id="@+id/username_signup"
             android:hint="@string/username_hint"
             android:layout_width="250dp"
             android:layout_height="40dp"
@@ -35,7 +35,7 @@
 	    </EditText>
 	    
 	    <EditText
-            android:id="@+id/password_login"
+            android:id="@+id/password_signup"
             android:layout_width="250dp"
             android:layout_height="40dp"
             android:layout_centerHorizontal="true"
@@ -45,14 +45,15 @@
         </EditText>
 	    
         <Button
+            android:id="@+id/signup_button"
             android:layout_width="250dp"
             android:layout_height="40dp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:text="@string/login_button"
-            android:background="#37a7fa"
+            android:text="@string/signup_button"
+            android:background="#4aae39"
             android:textColor="#ffffff"
-            android:onClick="login"/>
+            android:onClick=""/>
 
     </RelativeLayout>
         
@@ -60,27 +61,6 @@
         android:layout_weight="4"
         android:layout_height="0dp"
         android:layout_width="fill_parent">
-
-        <TextView
-            android:id="@+id/signup_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/signup"
-            android:layout_centerHorizontal="true"
-
-            android:text="@string/signup_text" />
-
-        <Button
-            android:id="@+id/signup"
-            android:layout_width="250dp"
-            android:layout_height="40dp"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:text="@string/signup_button" 
-            android:background="#4aae39"
-            android:textColor="#ffffff"
-            android:onClick="login"/>
-
     </RelativeLayout>
 
 
