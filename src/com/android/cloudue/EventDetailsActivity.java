@@ -10,13 +10,15 @@ import android.widget.TextView;
 public class EventDetailsActivity extends Activity {
 
 	String eventName;
-	
+	String listNo;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_event_details);
 		Intent intent = getIntent();
-	    eventName = intent.getStringExtra(ListEventSomeday.EXTRA_MESSAGE);
+		String[] itemInfo = intent.getStringArrayExtra(ListEventSomeday.EXTRA_MESSAGE);
+	    eventName = itemInfo[1];
+	    listNo = itemInfo[0];
 		TextView textView = (TextView)findViewById(R.id.event_detail);
 		textView.setText(eventName);
 		

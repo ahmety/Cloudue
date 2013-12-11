@@ -68,8 +68,9 @@ public class ListEventSomeday extends ListFragment {
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
 		String eventName = list_items.get(position);
+		String[] itemInfo = {"2",eventName};
 		Intent intent = new Intent(getActivity(), EventDetailsActivity.class);
-		intent.putExtra(EXTRA_MESSAGE, eventName);
+		intent.putExtra(EXTRA_MESSAGE, itemInfo);
 		startActivity(intent);
 	}
 	
