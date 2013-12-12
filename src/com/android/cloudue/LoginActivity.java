@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
@@ -48,6 +49,7 @@ public class LoginActivity extends Activity {
 				// TODO Auto-generated method stub
 				if(object == null) {
 					Toast toast = Toast.makeText(getApplicationContext(), "Unknown user!", Toast.LENGTH_SHORT);
+					toast.setGravity(Gravity.CENTER, 0, 0);
 					toast.show();
 				} else {
 					if(object.getString("password").equals(password)) {
@@ -63,6 +65,7 @@ public class LoginActivity extends Activity {
 					}
 					else {
 						Toast toast = Toast.makeText(getApplicationContext(), "Wrong password!", Toast.LENGTH_SHORT);
+						toast.setGravity(Gravity.CENTER, 0, 0);
 						toast.show();
 					}
 				}

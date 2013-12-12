@@ -52,7 +52,7 @@ public class EventDetailsActivity extends Activity {
 					System.out.println(object.getNumber("listIndex"));
 				}
 				Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-				intent.putExtra("currentTab",listNo);
+				intent.putExtra("currentTab", listNo);
 				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 				startActivity(intent);
 			}

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
@@ -45,6 +46,7 @@ public class SignupActivity extends Activity {
 		if(userName.equals("User")){
 			//TODO dialog
 			Toast toast = Toast.makeText(getApplicationContext(), "Username is not available!", Toast.LENGTH_SHORT);
+			toast.setGravity(Gravity.CENTER, 0, 0);
 			toast.show();
 			System.out.println("Username is not available!");
 			return;
@@ -65,6 +67,7 @@ public class SignupActivity extends Activity {
 				else{
 					//TODO dialog
 					Toast toast = Toast.makeText(getApplicationContext(), "Username is already in use!", Toast.LENGTH_SHORT);
+					toast.setGravity(Gravity.CENTER, 0, 0);
 					toast.show();
 
 					System.out.println("Username is already in use!");
