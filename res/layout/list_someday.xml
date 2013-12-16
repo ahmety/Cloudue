@@ -3,13 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" 
     android:orientation="vertical"
-    android:id="@+id/someday_linear">
+    android:background="#ffffff">
     
    <ListView
 	    android:id="@android:id/list"
 	    android:layout_width="match_parent"
 	    android:layout_height="match_parent"
-	    android:layout_weight="5" >
+	    android:layout_weight="5"
+	    android:background="#ffffff" >
     
 	</ListView>
 

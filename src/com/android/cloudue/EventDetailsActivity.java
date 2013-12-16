@@ -2,7 +2,9 @@ package com.android.cloudue;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
@@ -25,6 +27,8 @@ public class EventDetailsActivity extends Activity {
 		String[] itemInfo = intent.getStringArrayExtra("itemInfo");
 	    eventName = itemInfo[1];
 	    listNo = itemInfo[0];
+	    
+	    
 		TextView textView = (TextView)findViewById(R.id.event_detail);
 		textView.setText(eventName);
 		
@@ -38,7 +42,13 @@ public class EventDetailsActivity extends Activity {
 	}
 	
 	public void removeEvent(View view){
-		ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("DueEvent");
+		System.out.println("inside removeevent");
+		System.out.println("eventName: " + eventName);
+	    System.out.println("List no: " + listNo);
+	    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+		String userNameDueList = preferences.getString("userName", "");
+		ParseQuery<ParseObject> query = new ParseQuery<ParseObject>(userNameDueList + "DueList");
+		System.out.println(userNameDueList);
 		query.whereEqualTo("listIndex", Integer.parseInt(listNo));
 		query.whereEqualTo("detail", eventName);
 		query.getFirstInBackground(new GetCallback<ParseObject>() {
