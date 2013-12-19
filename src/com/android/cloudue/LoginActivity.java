@@ -26,6 +26,14 @@ public class LoginActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
 		Parse.initialize(this, "StrOqB8qnqpisT8hL6gn3ru4R30Iz4odmzQasElG", "5VdNwSQNvvzNex7dvq4R0RexZD3J5r3HaqpvHOGi");
+		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+		SharedPreferences.Editor editor = preferences.edit();
+		userName = preferences.getString("userName", "");
+		if(!userName.equalsIgnoreCase("")) {
+			Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+			startActivity(intent);
+			finish();
+		}
 	}
 
 	@Override
