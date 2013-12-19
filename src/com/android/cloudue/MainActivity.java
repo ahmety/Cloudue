@@ -4,12 +4,11 @@ import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.view.MotionEventCompat;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
-import android.view.MotionEvent;
-import android.view.View;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.parse.Parse;
 
@@ -56,5 +55,18 @@ public class MainActivity extends FragmentActivity {
         return true;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+    	if( item.getItemId() == R.id.signout_menu_button){
+    		Toast toast = Toast.makeText(getApplicationContext(), "Ahmet doldurcak!", Toast.LENGTH_SHORT);
+			toast.setGravity(Gravity.CENTER, 0, 0);
+			toast.show();
+    	    return true;
+    	}
+    	
+    	else{
+        	return super.onOptionsItemSelected(item);
+        }
+    }
 }
 
