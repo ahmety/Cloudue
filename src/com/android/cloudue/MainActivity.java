@@ -2,7 +2,9 @@ package com.android.cloudue;
 
 import android.app.ActionBar;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.Gravity;
@@ -58,9 +60,15 @@ public class MainActivity extends FragmentActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
     	if( item.getItemId() == R.id.signout_menu_button){
-    		Toast toast = Toast.makeText(getApplicationContext(), "Ahmet doldurcak!", Toast.LENGTH_SHORT);
-			toast.setGravity(Gravity.CENTER, 0, 0);
-			toast.show();
+    		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+    		SharedPreferences.Editor editor = preferences.edit();
+			editor.clear();
+			editor.commit();
+			
+			Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+			startActivity(intent);
+			finish();
+
     	    return true;
     	}
     	
