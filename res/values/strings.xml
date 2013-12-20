@@ -19,6 +19,6 @@
     <string name="remove_button">Remove</string>
     <string name="title_activity_signup">SignupActivity</string>
     <string name="hello_world">Hello world!</string>
-    <string name="signout_menu_button">Sign out</string>
+    <string name="logout_menu_button">Log out</string>
 	
 </resources>

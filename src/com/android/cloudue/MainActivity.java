@@ -7,10 +7,12 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
-import android.view.Gravity;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Toast;
+import android.view.View;
 
 import com.parse.Parse;
 
@@ -27,6 +29,7 @@ public class MainActivity extends FragmentActivity {
         pager = new ViewPager(this);
 		pager.setId(R.id.pager);
 		setContentView(pager);
+		//registerForContextMenu (pager);
 		
 		final ActionBar bar = getActionBar();
 		bar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
@@ -59,7 +62,7 @@ public class MainActivity extends FragmentActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-    	if( item.getItemId() == R.id.signout_menu_button){
+    	if( item.getItemId() == R.id.logout_menu_button){
     		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
     		SharedPreferences.Editor editor = preferences.edit();
 			editor.clear();
@@ -76,5 +79,14 @@ public class MainActivity extends FragmentActivity {
         	return super.onOptionsItemSelected(item);
         }
     }
+    
+//    @Override
+//    public void onCreateContextMenu(ContextMenu menu, View v,
+//                                    ContextMenuInfo menuInfo) {
+//        super.onCreateContextMenu(menu, v, menuInfo);
+//        MenuInflater inflater = getMenuInflater();
+//        inflater.inflate(R.menu.context_menu, menu);
+//    }
+    
 }
 
