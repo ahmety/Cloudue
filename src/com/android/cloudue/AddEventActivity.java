@@ -74,8 +74,6 @@ public class AddEventActivity extends Activity {
 //		editor.putString("string_id", message); //InputString: from the EditText
 //		editor.commit();
 		
-		
-		
 		//if event came from today list layout
 		
 		//else if event came from tomorrow list layout
