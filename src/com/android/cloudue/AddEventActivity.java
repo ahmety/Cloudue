@@ -42,12 +42,6 @@ public class AddEventActivity extends Activity {
 	    }
 	    
 	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.add_event, menu);
-		return true;
-	}
 	
 	public void addCalendarEvent(View view){
 		

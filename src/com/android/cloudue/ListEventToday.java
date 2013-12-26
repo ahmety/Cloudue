@@ -70,8 +70,7 @@ public class ListEventToday extends ListFragment {
 		        });
 		
 		return rootView;
-	}
-
+	}	
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
 		String eventName = list_items.get(position);
@@ -79,7 +78,5 @@ public class ListEventToday extends ListFragment {
 		Intent intent = new Intent(getActivity(), EventDetailsActivity.class);
 		intent.putExtra("itemInfo", itemInfo);
 		startActivity(intent);
-	}
-
-	
+	}	
 }

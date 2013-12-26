@@ -26,12 +26,6 @@ public class SignupActivity extends Activity {
 		setContentView(R.layout.activity_signup);
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.signup, menu);
-		return true;
-	}
 
 	public void signup(View view){
 		//TODO method stub
