@@ -61,11 +61,19 @@ public class ListEventToday extends ListFragment {
 					toast.setGravity(Gravity.CENTER, 0, 0);
 					toast.show();
 				}
-				ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, list_items);
+				//ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, list_items);
+				EventListAdapter adapter = new EventListAdapter(getActivity(), R.layout.event_row, list_items);
 				setListAdapter(adapter);
 			}
 		});
 	}
+	
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+	    super.onActivityCreated(savedInstanceState);
+	     setListAdapter(new EventListAdapter(getActivity(), R.layout.event_row,list_items));
+	}
+	
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
