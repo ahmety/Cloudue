@@ -9,12 +9,12 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-public class EventListAdapter extends ArrayAdapter<String> {
+public class EventListAdapter extends ArrayAdapter<EventData> {
 	Context context;
-	ArrayList<String> list_items;
+	ArrayList<EventData> list_items;
 	
 	public EventListAdapter(Context context, int textViewResourceId,
-			ArrayList<String> list_items) {
+			ArrayList<EventData> list_items) {
 		super(context, textViewResourceId, list_items);
 		this.context = context;
 		this.list_items = list_items;
@@ -26,7 +26,14 @@ public class EventListAdapter extends ArrayAdapter<String> {
 				(LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View rowView = inflater.inflate(R.layout.event_row, parent, false);
 		TextView eventContent = (TextView)rowView.findViewById(R.id.row_event);
-		eventContent.setText(list_items.get(position));
+		eventContent.setText(list_items.get(position).getDetail());
+		
+		if(list_items.get(position).getSharingUser() != null) {
+			TextView eventSharingUserContent = (TextView)rowView.findViewById(R.id.row_event_shared);
+			eventSharingUserContent.setText(list_items.get(position).getSharingUser());
+		}
+		
+		
 		return rowView;
 	}
 

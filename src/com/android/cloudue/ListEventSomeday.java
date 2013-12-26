@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ListFragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,13 +24,13 @@ import com.parse.ParseQuery;
 public class ListEventSomeday extends ListFragment {
 	public final static String EXTRA_MESSAGE = "com.android.cloudue.MESSAGE";	
 	public Context context;
-	ArrayList<String> list_items;
+	ArrayList<EventData> list_items;
 	String userNameDueList;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		list_items = new ArrayList<String>();
+		list_items = new ArrayList<EventData>();
 		
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
 		userNameDueList = preferences.getString("userName", "");
@@ -46,7 +47,11 @@ public class ListEventSomeday extends ListFragment {
 					com.parse.ParseException e) {
 				if(e == null) {
 					for(ParseObject object : objects) {
-						list_items.add(object.getString("detail"));
+						String detail = object.getString("detail");
+						String sharingUser = object.getString("shared");
+//						Log.v(null, detail);
+//						Log.v(null, sharingUser);
+						list_items.add(new EventData(detail, sharingUser));
 					}
 				}
 				//ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, list_items);
@@ -82,7 +87,7 @@ public class ListEventSomeday extends ListFragment {
 	
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
-		String eventName = list_items.get(position);
+		String eventName = list_items.get(position).getDetail();
 		String[] itemInfo = {"2",eventName};
 		Intent intent = new Intent(getActivity(), EventDetailsActivity.class);
 		intent.putExtra("itemInfo", itemInfo);

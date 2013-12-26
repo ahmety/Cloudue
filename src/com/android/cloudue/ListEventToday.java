@@ -25,13 +25,13 @@ import com.parse.ParseQuery;
 public class ListEventToday extends ListFragment {
 	public final static String EXTRA_MESSAGE = "com.android.cloudue.MESSAGE";	
 	public Context context;
-	ArrayList<String> list_items;
+	ArrayList<EventData> list_items;
 	String userNameDueList;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		list_items = new ArrayList<String>();
+		list_items = new ArrayList<EventData>();
 		
 		
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
@@ -51,15 +51,9 @@ public class ListEventToday extends ListFragment {
 				String sharingUsers = "";
 				if(e == null) {
 					for(ParseObject object : objects) {
-						if(object.getString("shared") != null) {
-							sharedEvents += object.getString("detail") + "\n";
-						}
-						list_items.add(object.getString("detail"));
+						list_items.add(new EventData(object.getString("detail"), object.getString("shared")));
 					}
 					
-					Toast toast = Toast.makeText(getActivity().getApplicationContext(), "shared the event with you", Toast.LENGTH_LONG);
-					toast.setGravity(Gravity.CENTER, 0, 0);
-					toast.show();
 				}
 				//ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, list_items);
 				EventListAdapter adapter = new EventListAdapter(getActivity(), R.layout.event_row, list_items);
@@ -93,7 +87,7 @@ public class ListEventToday extends ListFragment {
 	}	
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
-		String eventName = list_items.get(position);
+		String eventName = list_items.get(position).getDetail();
 		String[] itemInfo = {"0",eventName};
 		Intent intent = new Intent(getActivity(), EventDetailsActivity.class);
 		intent.putExtra("itemInfo", itemInfo);

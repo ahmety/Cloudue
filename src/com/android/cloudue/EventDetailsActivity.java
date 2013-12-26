@@ -80,7 +80,7 @@ public class EventDetailsActivity extends Activity {
 						ParseObject dueEvent = new ParseObject(sharedUser + "DueList");
 						dueEvent.put("detail", eventName);
 						dueEvent.put("listIndex", Integer.parseInt(listNo));
-						dueEvent.put("shared", userName);
+						dueEvent.put("shared", "from " + userName);
 						dueEvent.saveInBackground();
 						Toast toast = Toast.makeText(getApplicationContext(), "Event has been shared with "+sharedUser, Toast.LENGTH_SHORT);
 						toast.setGravity(Gravity.CENTER, 0, 0);
