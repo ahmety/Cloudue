@@ -10,11 +10,13 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ListFragment;
 import android.support.v4.view.ViewPager;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.ParseObject;
@@ -31,6 +33,7 @@ public class ListEventToday extends ListFragment {
 		super.onCreate(savedInstanceState);
 		list_items = new ArrayList<String>();
 		
+		
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
 		userNameDueList = preferences.getString("userName", "");
 		if(!userNameDueList.equalsIgnoreCase("")) {
@@ -40,14 +43,23 @@ public class ListEventToday extends ListFragment {
 		ParseQuery<ParseObject> query = ParseQuery.getQuery(userNameDueList);
 		query.whereEqualTo("listIndex", 0);
 		query.findInBackground(new FindCallback<ParseObject>() {
-
+			
 			@Override
 			public void done(List<ParseObject> objects,
 					com.parse.ParseException e) {
+				String sharedEvents = "";
+				String sharingUsers = "";
 				if(e == null) {
 					for(ParseObject object : objects) {
+						if(object.getString("shared") != null) {
+							sharedEvents += object.getString("detail") + "\n";
+						}
 						list_items.add(object.getString("detail"));
 					}
+					
+					Toast toast = Toast.makeText(getActivity().getApplicationContext(), "shared the event with you", Toast.LENGTH_LONG);
+					toast.setGravity(Gravity.CENTER, 0, 0);
+					toast.show();
 				}
 				ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, list_items);
 				setListAdapter(adapter);

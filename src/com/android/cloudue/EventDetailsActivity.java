@@ -23,6 +23,7 @@ public class EventDetailsActivity extends Activity {
 	String eventName;
 	String listNo;
 	String sharedUser;
+	String userName;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +34,8 @@ public class EventDetailsActivity extends Activity {
 	    eventName = itemInfo[1];
 	    listNo = itemInfo[0];
 	    
+	    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+	    userName = preferences.getString("userName", "");
 	    
 		TextView textView = (TextView)findViewById(R.id.event_detail);
 		textView.setText(eventName);
@@ -40,9 +43,7 @@ public class EventDetailsActivity extends Activity {
 	}
 	
 	public void removeEvent(View view){
-	    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-		String userNameDueList = preferences.getString("userName", "");
-		ParseQuery<ParseObject> query = new ParseQuery<ParseObject>(userNameDueList + "DueList");
+		ParseQuery<ParseObject> query = new ParseQuery<ParseObject>(userName + "DueList");
 		query.whereEqualTo("listIndex", Integer.parseInt(listNo));
 		query.whereEqualTo("detail", eventName);
 		query.getFirstInBackground(new GetCallback<ParseObject>() {
@@ -79,6 +80,7 @@ public class EventDetailsActivity extends Activity {
 						ParseObject dueEvent = new ParseObject(sharedUser + "DueList");
 						dueEvent.put("detail", eventName);
 						dueEvent.put("listIndex", Integer.parseInt(listNo));
+						dueEvent.put("shared", userName);
 						dueEvent.saveInBackground();
 						Toast toast = Toast.makeText(getApplicationContext(), "Event has been shared with "+sharedUser, Toast.LENGTH_SHORT);
 						toast.setGravity(Gravity.CENTER, 0, 0);
