@@ -5,9 +5,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.parse.GetCallback;
 import com.parse.ParseException;
@@ -18,6 +22,7 @@ public class EventDetailsActivity extends Activity {
 	public final static String EXTRA_MESSAGE = "com.android.cloudue.MESSAGE";
 	String eventName;
 	String listNo;
+	String sharedUser;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,25 +40,18 @@ public class EventDetailsActivity extends Activity {
 	}
 	
 	public void removeEvent(View view){
-		System.out.println("inside removeevent");
-		System.out.println("eventName: " + eventName);
-	    System.out.println("List no: " + listNo);
 	    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 		String userNameDueList = preferences.getString("userName", "");
 		ParseQuery<ParseObject> query = new ParseQuery<ParseObject>(userNameDueList + "DueList");
-		System.out.println(userNameDueList);
 		query.whereEqualTo("listIndex", Integer.parseInt(listNo));
 		query.whereEqualTo("detail", eventName);
 		query.getFirstInBackground(new GetCallback<ParseObject>() {
 			
 			@Override
 			public void done(ParseObject object, ParseException e) {
-				// TODO Auto-generated method stub
 				if(object != null) {
 					object.deleteInBackground();
-					System.out.println(object.getString("detail"));
-					System.out.println(object.getNumber("listIndex"));
-				}
+					}
 				Intent intent = new Intent(getApplicationContext(), MainActivity.class);
 				intent.putExtra("currentTab", listNo);
 				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -61,5 +59,33 @@ public class EventDetailsActivity extends Activity {
 			}
 		});
 	}
-
+	public void shareEvent(View view){
+		EditText etSharedUser = (EditText)findViewById(R.id.shared_username);
+		sharedUser = etSharedUser.getText().toString();
+		if(!sharedUser.equalsIgnoreCase("")){	
+			ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Users");
+			query.whereEqualTo("username", sharedUser);
+			query.getFirstInBackground(new GetCallback<ParseObject>() {
+				
+				@Override
+				public void done(ParseObject object, ParseException e) {
+					if(object == null) {
+						Toast toast = Toast.makeText(getApplicationContext(), "Unknown user!", Toast.LENGTH_SHORT);
+						toast.setGravity(Gravity.CENTER, 0, 0);
+						toast.show();
+					}
+					
+					else{
+						ParseObject dueEvent = new ParseObject(sharedUser + "DueList");
+						dueEvent.put("detail", eventName);
+						dueEvent.put("listIndex", Integer.parseInt(listNo));
+						dueEvent.saveInBackground();
+						Toast toast = Toast.makeText(getApplicationContext(), "Event has been shared with "+sharedUser, Toast.LENGTH_SHORT);
+						toast.setGravity(Gravity.CENTER, 0, 0);
+						toast.show();
+						}
+				}
+			});
+		}
+	}
 }

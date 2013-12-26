@@ -17,6 +17,8 @@
     <string name="title_activity_event_details">EventDetailsActivity</string>
     <string name="event_detail"></string>
     <string name="remove_button">Remove</string>
+    <string name="share_button">Share</string>
+    <string name="share_hint">Share with..</string>
     <string name="title_activity_signup">SignupActivity</string>
     <string name="hello_world">Hello world!</string>
     <string name="logout_menu_button">Log out</string>
