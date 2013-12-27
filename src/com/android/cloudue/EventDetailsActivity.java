@@ -83,10 +83,30 @@ public class EventDetailsActivity extends Activity {
 						dueEvent.put("listIndex", Integer.parseInt(listNo));
 						dueEvent.put("shared", "from " + userName);
 						dueEvent.saveInBackground();
+						
+						ParseQuery<ParseObject> sharingQuery = new ParseQuery<ParseObject>(userName+"DueList");
+						sharingQuery.whereEqualTo("detail", eventName);
+						sharingQuery.getFirstInBackground(new GetCallback<ParseObject>() {
+							@Override
+							public void done(ParseObject object, ParseException e) {
+								if(object != null){
+									object.put("shared", "shared with " + sharedUser);
+									object.saveInBackground();
+								}
+							}
+							
+						});
+						
+						
 						shareButtonPressed = true;
 						Toast toast = Toast.makeText(getApplicationContext(), "Event has been shared with "+sharedUser, Toast.LENGTH_SHORT);
 						toast.setGravity(Gravity.CENTER, 0, 0);
 						toast.show();
+						
+						Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+						intent.putExtra("currentTab", listNo);
+						intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+						startActivity(intent);
 					}
 				}
 			});
