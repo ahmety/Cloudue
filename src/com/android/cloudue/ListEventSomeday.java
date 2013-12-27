@@ -81,6 +81,7 @@ public class ListEventSomeday extends ListFragment {
 		                startActivity(intent);
 		            }
 		        });
+		
 		rootView.findViewById(R.id.refresh_button2).setOnClickListener(new View.OnClickListener() {
 			
 			@Override
