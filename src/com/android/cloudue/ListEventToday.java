@@ -86,14 +86,12 @@ public class ListEventToday extends ListFragment {
 		                }
 		                intent.putExtra("list_items", dueList);
 		                startActivity(intent);
-		                startActivity(intent);
 		            }
 		        });
 		rootView.findViewById(R.id.refresh_button0).setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View view) {
-				list_items = new ArrayList<EventData>();
 				ParseQuery<ParseObject> query = ParseQuery.getQuery(userNameDueList);
 				query.whereEqualTo("listIndex", 0);
 				query.findInBackground(new FindCallback<ParseObject>() {
@@ -102,6 +100,7 @@ public class ListEventToday extends ListFragment {
 					public void done(List<ParseObject> objects,
 							com.parse.ParseException e) {
 						if(e == null) {
+							list_items.clear();
 							for(ParseObject object : objects) {
 								list_items.add(new EventData(object.getString("detail"), object.getString("shared")));
 							}
@@ -111,7 +110,6 @@ public class ListEventToday extends ListFragment {
 						setListAdapter(adapter);
 					}
 				});
-				
 			}
 		});
 		

@@ -92,7 +92,6 @@ public class ListEventSomeday extends ListFragment {
 			
 			@Override
 			public void onClick(View view) {
-				list_items = new ArrayList<EventData>();
 				ParseQuery<ParseObject> query = ParseQuery.getQuery(userNameDueList);
 				query.whereEqualTo("listIndex", 2);
 				query.findInBackground(new FindCallback<ParseObject>() {
@@ -101,6 +100,7 @@ public class ListEventSomeday extends ListFragment {
 					public void done(List<ParseObject> objects,
 							com.parse.ParseException e) {
 						if(e == null) {
+							list_items.clear();
 							for(ParseObject object : objects) {
 								list_items.add(new EventData(object.getString("detail"), object.getString("shared")));
 							}
