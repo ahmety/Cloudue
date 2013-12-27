@@ -24,6 +24,7 @@ public class EventDetailsActivity extends Activity {
 	String listNo;
 	String sharedUser;
 	String userName;
+	boolean shareButtonPressed = false;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -63,11 +64,10 @@ public class EventDetailsActivity extends Activity {
 	public void shareEvent(View view){
 		EditText etSharedUser = (EditText)findViewById(R.id.shared_username);
 		sharedUser = etSharedUser.getText().toString();
-		if(!sharedUser.equalsIgnoreCase("")){	
+		if(!sharedUser.equalsIgnoreCase("") && !shareButtonPressed){	
 			ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Users");
 			query.whereEqualTo("username", sharedUser);
 			query.getFirstInBackground(new GetCallback<ParseObject>() {
-				
 				@Override
 				public void done(ParseObject object, ParseException e) {
 					if(object == null) {
@@ -82,10 +82,11 @@ public class EventDetailsActivity extends Activity {
 						dueEvent.put("listIndex", Integer.parseInt(listNo));
 						dueEvent.put("shared", "from " + userName);
 						dueEvent.saveInBackground();
+						shareButtonPressed = true;
 						Toast toast = Toast.makeText(getApplicationContext(), "Event has been shared with "+sharedUser, Toast.LENGTH_SHORT);
 						toast.setGravity(Gravity.CENTER, 0, 0);
 						toast.show();
-						}
+					}
 				}
 			});
 		}
