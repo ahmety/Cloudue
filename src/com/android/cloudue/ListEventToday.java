@@ -84,7 +84,8 @@ public class ListEventToday extends ListFragment {
 		        });
 		
 		return rootView;
-	}	
+	}
+	
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
 		String eventName = list_items.get(position).getDetail();

@@ -20,6 +20,7 @@ import com.parse.ParseQuery;
 public class LoginActivity extends Activity {
 	String userName;
 	String password;
+	boolean buttonPressed = false;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -41,38 +42,39 @@ public class LoginActivity extends Activity {
 		EditText etPassword = (EditText)findViewById(R.id.password_login);
 		userName = etUserName.getText().toString();
 		password = etPassword.getText().toString();
-		ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Users");
-		query.whereEqualTo("username", userName);
-		query.getFirstInBackground(new GetCallback<ParseObject>() {
-			
-			@Override
-			public void done(ParseObject object, ParseException e) {
-				// TODO Auto-generated method stub
-				if(object == null) {
-					Toast toast = Toast.makeText(getApplicationContext(), "Unknown user!", Toast.LENGTH_SHORT);
-					toast.setGravity(Gravity.CENTER, 0, 0);
-					toast.show();
-				} else {
-					if(object.getString("password").equals(password)) {
-						SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-						SharedPreferences.Editor editor = preferences.edit();
-						editor.clear();
-						editor.putString("userName", userName);
-						editor.commit();
-						
-						Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-						startActivity(intent);
-						finish();
-					}
-					else {
-						Toast toast = Toast.makeText(getApplicationContext(), "Wrong password!", Toast.LENGTH_SHORT);
+		if(!buttonPressed) {
+			ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Users");
+			query.whereEqualTo("username", userName);
+			query.getFirstInBackground(new GetCallback<ParseObject>() {
+				
+				@Override
+				public void done(ParseObject object, ParseException e) {
+					// TODO Auto-generated method stub
+					if(object == null) {
+						Toast toast = Toast.makeText(getApplicationContext(), "Unknown user!", Toast.LENGTH_SHORT);
 						toast.setGravity(Gravity.CENTER, 0, 0);
 						toast.show();
+					} else {
+						if(object.getString("password").equals(password)) {
+							SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+							SharedPreferences.Editor editor = preferences.edit();
+							editor.clear();
+							editor.putString("userName", userName);
+							editor.commit();
+							buttonPressed = true;
+							Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+							startActivity(intent);
+							finish();
+						}
+						else {
+							Toast toast = Toast.makeText(getApplicationContext(), "Wrong password!", Toast.LENGTH_SHORT);
+							toast.setGravity(Gravity.CENTER, 0, 0);
+							toast.show();
+						}
 					}
 				}
-			}
-		});
-		
+			});
+		}
 	}
 	public void showSignupActivity(View view){
 		Intent intent = new Intent(this, SignupActivity.class);
