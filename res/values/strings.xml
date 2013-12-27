@@ -23,5 +23,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="logout_menu_button">Log out</string>
     <string name="desc">description</string>
+    <string name="refresh_button">Refresh</string>
 	
 </resources>

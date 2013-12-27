@@ -14,12 +14,24 @@
     
 	</ListView>
 
-   <Button 
-       android:id="@+id/today_button"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_weight="1"
-	    android:layout_gravity="center_horizontal"
-	   	android:text="@string/today_button" 
-       />
+   <RelativeLayout
+       android:layout_width="fill_parent"
+       android:layout_height="wrap_content"
+       android:layout_weight="1" 
+       android:orientation="horizontal">
+
+   		<ImageButton 
+       		android:id="@+id/today_button"
+	    	android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		   	android:contentDescription="@string/desc"
+		   	android:src="@drawable/add_icon"/>
+   		<ImageButton
+       		android:id="@+id/refresh_button"
+	    	android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		   	android:contentDescription="@string/desc"
+		   	android:src="@drawable/refresh_icon"/>
+   
+    </RelativeLayout>
 </LinearLayout>
