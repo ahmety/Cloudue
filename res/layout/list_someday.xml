@@ -8,30 +8,38 @@
    <ListView
 	    android:id="@android:id/list"
 	    android:layout_width="match_parent"
-	    android:layout_height="match_parent"
+	    android:layout_height="0dp"
 	    android:layout_weight="5"
 	    android:background="#ffffff" >
     
 	</ListView>
-
+	
    <RelativeLayout
        android:layout_width="fill_parent"
-       android:layout_height="wrap_content"
-       android:layout_weight="1" 
+       android:layout_height="50dp"
        android:orientation="horizontal">
 
-   		<ImageButton 
-       		android:id="@+id/someday_button"
-	    	android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		   	android:contentDescription="@string/desc"
-		   	android:src="@drawable/add_icon"/>
    		<ImageButton
-       		android:id="@+id/refresh_button2"
-	    	android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		   	android:contentDescription="@string/desc"
-		   	android:src="@drawable/refresh_icon"/>
-   
+   		    android:id="@+id/someday_button"
+   		    style="?android:attr/buttonBarButtonStyle"
+   		    android:layout_width="wrap_content"
+   		    android:layout_height="wrap_content"
+   		    android:layout_alignParentLeft="true"
+   		    android:layout_centerVertical="true"
+   		    android:layout_marginLeft="90dp"
+   		    android:contentDescription="@string/desc"
+   		    android:src="@drawable/add_icon" />
+
+   		<ImageButton
+   		    android:id="@+id/refresh_button2"
+   		    style="?android:attr/buttonBarButtonStyle"
+   		    android:layout_width="wrap_content"
+   		    android:layout_height="wrap_content"
+   		    android:layout_centerVertical="true" 
+   		    android:layout_alignParentRight="true"
+   		    android:layout_marginRight="90dp"
+   		    android:contentDescription="@string/desc"
+   		    android:src="@drawable/refresh_icon" />  
     </RelativeLayout>
+   
 </LinearLayout>
