@@ -43,6 +43,7 @@ public class LoginActivity extends Activity {
 		userName = etUserName.getText().toString();
 		password = etPassword.getText().toString();
 		if(!buttonPressed) {
+			buttonPressed = true;
 			ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Users");
 			query.whereEqualTo("username", userName);
 			query.getFirstInBackground(new GetCallback<ParseObject>() {
@@ -54,6 +55,7 @@ public class LoginActivity extends Activity {
 						Toast toast = Toast.makeText(getApplicationContext(), "Unknown user!", Toast.LENGTH_SHORT);
 						toast.setGravity(Gravity.CENTER, 0, 0);
 						toast.show();
+						buttonPressed = false;
 					} else {
 						if(object.getString("password").equals(password)) {
 							SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -61,12 +63,12 @@ public class LoginActivity extends Activity {
 							editor.clear();
 							editor.putString("userName", userName);
 							editor.commit();
-							buttonPressed = true;
 							Intent intent = new Intent(getApplicationContext(), MainActivity.class);
 							startActivity(intent);
 							finish();
 						}
 						else {
+							buttonPressed = false;
 							Toast toast = Toast.makeText(getApplicationContext(), "Wrong password!", Toast.LENGTH_SHORT);
 							toast.setGravity(Gravity.CENTER, 0, 0);
 							toast.show();

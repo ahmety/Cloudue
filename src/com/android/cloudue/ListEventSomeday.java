@@ -78,6 +78,12 @@ public class ListEventSomeday extends ListFragment {
 		                Intent intent = new Intent(getActivity(), AddEventActivity.class);
 		                String cameFrom = "2";
 		                intent.putExtra(EXTRA_MESSAGE, cameFrom);
+		                int size = list_items.size();
+		                String[] dueList = new String[size];
+		                for(int i = 0; i < size; i++) {
+		                	dueList[i] = list_items.get(i).getDetail();
+		                }
+		                intent.putExtra("list_items", dueList);
 		                startActivity(intent);
 		            }
 		        });
@@ -99,7 +105,6 @@ public class ListEventSomeday extends ListFragment {
 								list_items.add(new EventData(object.getString("detail"), object.getString("shared")));
 							}
 						}
-						//ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, list_items);
 						EventListAdapter adapter = new EventListAdapter(getActivity(), R.layout.event_row, list_items);
 						setListAdapter(adapter);
 					}

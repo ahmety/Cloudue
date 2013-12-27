@@ -61,6 +61,7 @@ public class EventDetailsActivity extends Activity {
 			}
 		});
 	}
+	
 	public void shareEvent(View view){
 		EditText etSharedUser = (EditText)findViewById(R.id.shared_username);
 		sharedUser = etSharedUser.getText().toString();

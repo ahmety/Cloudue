@@ -79,6 +79,13 @@ public class ListEventToday extends ListFragment {
 		                Intent intent = new Intent(getActivity(), AddEventActivity.class);
 		                String cameFrom = "0";
 		                intent.putExtra(EXTRA_MESSAGE, cameFrom);
+		                int size = list_items.size();
+		                String[] dueList = new String[size];
+		                for(int i = 0; i < size; i++) {
+		                	dueList[i] = list_items.get(i).getDetail();
+		                }
+		                intent.putExtra("list_items", dueList);
+		                startActivity(intent);
 		                startActivity(intent);
 		            }
 		        });

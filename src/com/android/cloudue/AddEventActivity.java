@@ -1,13 +1,19 @@
 package com.android.cloudue;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.parse.ParseObject;
 
@@ -15,6 +21,7 @@ public class AddEventActivity extends Activity {
 	public final static String EXTRA_MESSAGE = "com.android.cloudue.MESSAGE";
 	String cameFrom;
 	String userNameDueList;
+	String[] list_items;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +47,7 @@ public class AddEventActivity extends Activity {
 	    else {
 	    	cameFrom = intent.getStringExtra(ListEventSomeday.EXTRA_MESSAGE);
 	    }
+	    list_items = intent.getStringArrayExtra("list_items");
 	    
 	}
 	
@@ -50,6 +58,16 @@ public class AddEventActivity extends Activity {
 		if(eventName.equals("")){
 			return;
 		}
+		
+		for(int i = 0; i < list_items.length; i++) {
+			if(eventName.equals(list_items[i])){
+				Toast toast = Toast.makeText(getApplicationContext(), "Event already exists!", Toast.LENGTH_SHORT);
+				toast.setGravity(Gravity.CENTER, 0, 0);
+				toast.show();
+				return;
+			}
+		}
+		
 		
 		int listIndex = Integer.parseInt(cameFrom);
 		
