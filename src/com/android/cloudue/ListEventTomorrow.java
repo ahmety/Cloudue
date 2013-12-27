@@ -76,6 +76,31 @@ public class ListEventTomorrow extends ListFragment{
 		                startActivity(intent);
 		            }
 		        });
+		rootView.findViewById(R.id.refresh_button1).setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View view) {
+				list_items = new ArrayList<EventData>();
+				ParseQuery<ParseObject> query = ParseQuery.getQuery(userNameDueList);
+				query.whereEqualTo("listIndex", 1);
+				query.findInBackground(new FindCallback<ParseObject>() {
+				
+					@Override
+					public void done(List<ParseObject> objects,
+							com.parse.ParseException e) {
+						if(e == null) {
+							for(ParseObject object : objects) {
+								list_items.add(new EventData(object.getString("detail"), object.getString("shared")));
+							}
+						}
+						//ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, list_items);
+						EventListAdapter adapter = new EventListAdapter(getActivity(), R.layout.event_row, list_items);
+						setListAdapter(adapter);
+					}
+				});
+				
+			}
+		});
 		
 		return rootView;
 	}
