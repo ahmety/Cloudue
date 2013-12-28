@@ -9,14 +9,10 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ListFragment;
-import android.support.v4.view.ViewPager;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.ParseObject;
@@ -47,8 +43,6 @@ public class ListEventToday extends ListFragment {
 			@Override
 			public void done(List<ParseObject> objects,
 					com.parse.ParseException e) {
-				String sharedEvents = "";
-				String sharingUsers = "";
 				if(e == null) {
 					for(ParseObject object : objects) {
 						list_items.add(new EventData(object.getString("detail"), object.getString("shared")));
