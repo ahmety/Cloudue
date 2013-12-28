@@ -27,7 +27,7 @@
    		    android:layout_gravity="center_vertical|left"
    		    android:background="#000000"
    		    android:text="@string/tomorrow_button"
-   		    android:textColor="#ffffff"/>
+   		    android:textColor="#37a7fa"/>
 		
    		<LinearLayout
    		    android:layout_width="5dp"
@@ -42,7 +42,7 @@
    		    android:layout_gravity="center_vertical|right"
    		    android:background="#000000"
    		    android:text="@string/refresh_button"
-   		    android:textColor="#ffffff"/>  
+   		    android:textColor="#37a7fa"/>  
     </LinearLayout>
    
 </LinearLayout>

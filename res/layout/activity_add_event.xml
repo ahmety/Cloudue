@@ -28,7 +28,9 @@
 	        android:layout_centerHorizontal="true"
 	        android:layout_below="@+id/event_name"
 	        android:onClick="addCalendarEvent"
-	        android:text="@string/add_button" />
+	        android:text="@string/add_button" 
+	        android:background="#37a7fa"
+            android:textColor="#ffffff"/>
 	</RelativeLayout>
 	<RelativeLayout 
         android:layout_weight="4"
